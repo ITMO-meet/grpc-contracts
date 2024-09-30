@@ -1,0 +1,93 @@
+// syntax = "proto3";
+
+// package notifications;
+
+// import "google/protobuf/timestamp.proto";
+
+// enum NotificationType {
+//   NOTIFICATION_TYPE_UNSPECIFIED = 0;
+//   NOTIFICATION_TYPE_MATCH = 1;
+//   NOTIFICATION_TYPE_MESSAGE = 2;
+//   NOTIFICATION_TYPE_LIKE = 3;
+//   NOTIFICATION_TYPE_SUPER_LIKE = 4;
+//   NOTIFICATION_TYPE_PROFILE_VIEW = 5;
+//   NOTIFICATION_TYPE_EVENT_INVITE = 6;
+//   NOTIFICATION_TYPE_SYSTEM_MESSAGE = 7;
+// }
+
+// service NotificationsService {
+//   rpc Subscribe (SubscribeRequest) returns (SubscribeResponse);
+//   rpc Unsubscribe (UnsubscribeRequest) returns (UnsubscribeResponse);
+//   rpc PublishNotification (PublishNotificationRequest) returns (PublishNotificationResponse);
+//   rpc GetNotifications (GetNotificationsRequest) returns (GetNotificationsResponse);
+//   rpc StreamNotifications (StreamNotificationsRequest) returns (stream Notification);
+//   rpc MarkNotificationRead (MarkNotificationReadRequest) returns (MarkNotificationReadResponse);
+// }
+
+// message SubscribeRequest {
+//   string user_id = 1;
+//   NotificationType type = 2;
+// }
+
+// message SubscribeResponse {
+//   bool success = 1;
+//   string error_message = 2;
+// }
+
+// message UnsubscribeRequest {
+//   string user_id = 1;
+//   NotificationType type = 2;
+// }
+
+// message UnsubscribeResponse {
+//   bool success = 1;
+//   string error_message = 2;
+// }
+
+// message PublishNotificationRequest {
+//   NotificationType type = 1;
+//   Notification notification = 2;
+// }
+
+// message PublishNotificationResponse {
+//   bool success = 1;
+//   string error_message = 2;
+// }
+
+// message GetNotificationsRequest {
+//   string user_id = 1;
+//   int32 limit = 2;
+//   int32 offset = 3;
+//   NotificationType type = 4;
+// }
+
+// message GetNotificationsResponse {
+//   repeated Notification notifications = 1;
+//   string error_message = 2;
+// }
+
+// message StreamNotificationsRequest {
+//   string user_id = 1;
+//   repeated NotificationType types = 2;
+// }
+
+// message Notification {
+//   string id = 1;
+//   string title = 2;
+//   string body = 3;
+//   NotificationType type = 4;
+//   string sender_id = 5;
+//   string recipient_id = 6;
+//   google.protobuf.Timestamp timestamp = 7;
+//   bool is_read = 8;
+// }
+
+// message MarkNotificationReadRequest {
+//   string user_id = 1;
+//   string notification_id = 2;
+// }
+
+// message MarkNotificationReadResponse {
+//   bool success = 1;
+//   string error_message = 2;
+// }

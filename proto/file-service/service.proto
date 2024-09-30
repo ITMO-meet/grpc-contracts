@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package file;
+
+service FileService {
+  rpc Upload(stream UploadRequest) returns(UploadResponse);
+  rpc GetFile(GetFileRequest) returns (stream GetFileResponse);
+  rpc GetFileUrl(GetFileUrlRequest) returns (GetFileUrlResponse);
+}
+
+message FileMetadata {
+  optional string user_id = 1;
+  bool private = 2;
+  string mime_type = 3;
+  string file_name = 4;
+  int64 size = 5;
+  optional bool temporary = 6;
+}
+
+message UploadRequest {
+  oneof data {
+    FileMetadata meta = 1;
+    bytes chunk = 2;
+  }
+}
+
+message UploadResponse {
+  string id = 1;
+}
+
+message GetFileRequest {
+  string id = 1;
+}
+
+message GetFileResponse {
+  oneof data {
+    FileMetadata meta = 1;
+    bytes chunk = 2;
+  }
+}
+
+message GetFileUrlRequest {
+  string id = 1;
+}
+
+message GetFileUrlResponse {
+  string url = 1;
+}

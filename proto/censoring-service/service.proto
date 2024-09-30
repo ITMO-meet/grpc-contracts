@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package censoring;
+
+service CensoringService {
+  rpc CensorText(CensorTextRequest) returns (CensorTextResponse);
+  rpc CensorImage(CensorImageRequest) returns (CensorImageResponse);
+}
+
+message CensorTextRequest {
+  string text = 1;
+}
+
+message CensorTextResponse {
+  string text = 1;
+  float score = 2;
+}
+
+message CensorImageRequest {
+  string image_id = 1;
+}
+
+message CensorImageResponse {
+  string image_id = 1;
+  float score = 2;
+}

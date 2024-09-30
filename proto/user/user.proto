@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package user;
+
+import "google/protobuf/timestamp.proto";
+
+message Preferences {
+  repeated string genders = 1;
+  int32 min_age = 2;
+  int32 max_age = 3;
+  double max_distance_km = 4;
+}
+
+message User {
+  string user_id = 1;
+  string name = 2;
+  string email = 3;
+  string gender = 4;
+  google.protobuf.Timestamp date_of_birth = 5;
+  repeated string photos = 6;
+}
+
+message Profile {
+  User user = 1;
+  string bio = 2;
+  repeated string interests = 3;
+  Preferences preferences = 4;
+}

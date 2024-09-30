@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+package datingservice;
+
+import "google/protobuf/timestamp.proto";
+
+import "user/user.proto";
+
+service ProfileService {
+  rpc GetProfile(GetProfileRequest) returns (GetProfileResponse);
+  rpc UpdateProfile(UpdateProfileRequest) returns (UpdateProfileResponse);
+  rpc UploadPhoto(UploadPhotoRequest) returns (UploadPhotoResponse);
+  rpc DeletePhoto(DeletePhotoRequest) returns (DeletePhotoResponse);
+  rpc UpdatePreferences(UpdatePreferencesRequest) returns (UpdatePreferencesResponse);
+}
+
+message GetProfileRequest {
+  string user_id = 1;
+}
+
+message GetProfileResponse {
+  Profile profile = 1;
+}
+
+message UpdateProfileRequest {
+  string user_id = 1;
+  Profile profile = 2;
+}
+
+message UpdateProfileResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message UploadPhotoRequest {
+  string user_id = 1;
+  bytes photo_data = 2;
+  string filename = 3;
+}
+
+message UploadPhotoResponse {
+  bool success = 1;
+  string photo_url = 2;
+  string message = 3;
+}
+
+message DeletePhotoRequest {
+  string user_id = 1;
+  string photo_url = 2;
+}
+
+message DeletePhotoResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message UpdatePreferencesRequest {
+  string user_id = 1;
+  Preferences preferences = 2;
+}
+
+message UpdatePreferencesResponse {
+  bool success = 1;
+  string message = 2;
+}
