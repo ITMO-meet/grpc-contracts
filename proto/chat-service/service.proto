@@ -1,32 +1,25 @@
-// syntax = "proto3";
+syntax = "proto3";
 
-// package chat;
+package chat;
 
-// service ChatService {
-//   rpc SendMessage (SendMessageRequest) returns (SendMessageResponse);
-//   rpc GetChatMessages (GetChatMessagesRequest) returns (GetMessagesResponse);
-//   rpc GetUserMessages (GetUserMessagesRequest) returns (GetMessagesResponse);
-// }
+service ChatService {
+  rpc GetChatMessages (GetChatMessagesRequest) returns (GetMessagesResponse);
 
-// message SendMessageRequest {
-//   Message message = 1;
-// }
+  // Returns last message from each chat partner
+  rpc GetUserMessages (GetUserMessagesRequest) returns (GetMessagesResponse);
+}
 
-// message SendMessageResponse {
-//   Message message = 1;
-// }
+message GetChatMessagesRequest {
+  string user_id = 1;
+  string chat_partner_id = 2;
+  int32 limit = 3;
+  int32 offset = 4;
+}
 
-// message GetChatMessagesRequest {
-//   string chat_partner_id = 1;
-//   int32 limit = 2;
-//   int32 offset = 3;
-// }
+message GetUserMessagesRequest {
+  string user_id = 1;
+}
 
-// message GetUserMessagesRequest {
-//   int32 limit = 1;
-//   int32 offset = 2;
-// }
-
-// message GetMessagesResponse {
-//   repeated Message messages = 1;
-// }
+message GetMessagesResponse {
+  repeated Message messages = 1;
+}

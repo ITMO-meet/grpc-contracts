@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package notifications;
+
+import "google/protobuf/timestamp.proto";
+
+enum NotificationType {
+  NOTIFICATION_TYPE_UNSPECIFIED = 0;
+  NOTIFICATION_TYPE_MATCH = 1;
+  NOTIFICATION_TYPE_MESSAGE = 2;
+  NOTIFICATION_TYPE_LIKE = 3;
+  NOTIFICATION_TYPE_SUPER_LIKE = 4;
+  NOTIFICATION_TYPE_PROFILE_VIEW = 5;
+  NOTIFICATION_TYPE_EVENT_INVITE = 6;
+  NOTIFICATION_TYPE_SYSTEM_MESSAGE = 7;
+}
+
+message Notification {
+  string id = 1;
+  string title = 2;
+  string body = 3;
+  NotificationType type = 4;
+  optional string sender_id = 5;  // optional for system messages
+  string recipient_id = 6;
+  google.protobuf.Timestamp timestamp = 7;
+  bool is_read = 8;
+}
